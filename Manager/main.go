@@ -95,7 +95,7 @@ func start(){
         os.Exit(3)
     }
     initConfig(config)
-    killV2Ray()
+    //killV2Ray()
     serviceLogger(fmt.Sprintf("Starting V2Ray! AlterID: %d, Level: %d", AlterID, Level), 0) 
     go startV2Ray()
     timeSleep(4)
@@ -217,7 +217,7 @@ func roundCheck(){
 func checkV2RayAlive(){
     if(!checkV2ray(V2RayPid)){
         serviceLogger("Restarting V2Ray!", 31)
-        killV2Ray()
+       // killV2Ray()
         pid, err := runV2Ray(V2config)
         if( err != nil){
             serviceLogger(fmt.Sprintf("RunV2Ray Error! Error:%s ",err), 31)
@@ -258,7 +258,7 @@ func checkV2ray(pid int) bool{
 
 func startV2Ray(){
     path := getCurrentPath()
-    var v2config = path + "/v2ray.json"
+    var v2config = path + "/v2ray2.json"
     if *V2cfg != "" {
         serviceLogger(fmt.Sprintf("Loading V2Ray Config: %s", *V2cfg), 0)
         v2config = *V2cfg
